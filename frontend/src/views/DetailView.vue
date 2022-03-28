@@ -49,13 +49,6 @@ export default {
     position: relative;
   }
 
-  .absolute {
-    position: absolute;
-    top: -4rem;
-    left: -1rem;
-    font-size: 2rem;
-  }
-
   img {
     flex: 1;
   }

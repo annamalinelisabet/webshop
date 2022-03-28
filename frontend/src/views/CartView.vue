@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <div class="cart-wrapper" v-if="cart.length">
-      <h1>KUNDVAGN <span class="counter">( {{cartCounter}} )</span></h1>
+    <div class="cart-wrapper" v-if="cart.length">   
+      <button @click="back" class="btn absolute"><i class="fa-solid fa-arrow-left-long"></i></button>
+        <h1>KUNDVAGN <span class="counter">( {{cartCounter}} )</span></h1>    
       <div class="cart-card-holder">
         <CartCard v-for="item in cart" :key="item.product._id" :item="item" /> 
       </div>
@@ -11,10 +12,10 @@
           <h4>{{ totalPrice }} kr</h4>
         </div>
         <button class="btn btn-primary btn-w">BESTÄLL</button>
-        <!-- <div class="flex">
+        <div class="flex none">
           <p class="login-text">Du måste vara inloggad för att beställa</p>          
           <button class="btn btn-primary btn-w btn-login">LOGGA IN</button>
-        </div> -->
+        </div>
       </div>
     </div>
     <div class="empty" v-else>
@@ -31,6 +32,11 @@ export default {
   components: { CartCard },
   computed: {
     ...mapGetters(['cart', 'totalPrice', 'cartCounter'])
+  },
+  methods: {
+      back() {
+        this.$router.go(-1)
+      }
   }
 }
 </script>
@@ -40,7 +46,8 @@ export default {
     width: 100%;
     background: white;
     padding: 3rem 2rem;
-    margin-block: 2rem;
+    margin: 4rem auto;
+    position: relative;
   }
 
   .counter {

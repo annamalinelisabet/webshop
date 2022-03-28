@@ -49,6 +49,10 @@ a {
   align-items: center;
 }
 
+.none {
+  display: none;
+}
+
 .btn {
   background: transparent;
   border: transparent;
@@ -79,6 +83,13 @@ a {
 
 .btn-w {
   width: 100%;
+}
+
+.absolute {
+  position: absolute;
+  top: -4rem;
+  left: -1rem;
+  font-size: 2rem;
 }
 
 @media (max-width: 992px) {

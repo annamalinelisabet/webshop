@@ -30,9 +30,18 @@ export default {
           }
           state.cart.push({ product, quantity })
       },
-    //   CHANGE_QUANTITY: (state, { product, quantity }) => {
-    //       let changedQuantity = state.cart
-    //   }
+      ADD_QUANTITY: (state, id) => {
+           let cartItem = state.cart.find(item => item.product._id === id)
+           cartItem.quantity++
+      },
+      SUB_QUANTITY: (state, id) => {
+           let cartItem = state.cart.find(item => item.product._id === id)
+           if(cartItem.quantity > 1){
+               cartItem.quantity--
+           } else {
+            state.cart = state.cart.filter(item => item.product._id !== id)
+           }
+      },
       REMOVE_CART_ITEM: (state, id) => {
          state.cart = state.cart.filter(item => item.product._id !== id)         
       }
@@ -41,12 +50,14 @@ export default {
       addToCart: ({commit}, { product, quantity }) => {
           commit('ADD_TO_CART', { product, quantity })
       },
-      changeQuantity: ({commit}, { product, quantity }) => {
-          commit('CHANGE_QUANTITY', { product, quantity })
+      addQuantity: ({commit}, id) => {
+          commit('ADD_QUANTITY', id)
+      },
+      subQuantity: ({commit}, id) => {
+          commit('SUB_QUANTITY', id)
       },
       removeCartItem: ({commit}, id) => {
           commit('REMOVE_CART_ITEM', id)
       }
-
   }
 }

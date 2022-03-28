@@ -50,11 +50,11 @@ export default {
     }
 
     .logo {
-    font-size: 50px;
-    font-family: 'Oswald', sans-serif;
-    background: var(--primary-color);
-    color: var(--text-logo-color);
-    padding: .3rem 2rem .3rem .5rem;
+        font-size: 50px;
+        font-family: 'Oswald', sans-serif;
+        background: var(--primary-color);
+        color: var(--text-logo-color);
+        padding: .3rem 2rem .3rem .5rem;
     }
 
     .logo::after {
@@ -78,9 +78,9 @@ export default {
     }
 
      @media (max-width: 992px) {
-    .links {
-      width: 20%;
-    }
+        .links {
+        width: 20%;
+        }
 
   }
 

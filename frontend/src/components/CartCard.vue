@@ -8,19 +8,12 @@
           </div>
       </div>
       <div class="cart-right flex">
-          <select @change="changeQuantity(value)" v-bind:value="item.quantity">
-              <option value="1" selected>1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-          </select>
-          <h3>{{ quantityXPrice }} kr</h3>
-
+            <div class="flex btn-group">
+                <button @click="subQuantity(item.product._id)" class="btn btn-q">-</button>
+                <p>{{ item.quantity }}</p>
+                <button @click="addQuantity(item.product._id)" class="btn btn-q">+</button>
+            </div>
+            <h3>{{ quantityXPrice }} kr</h3>    
       </div>
       <button @click="removeCartItem(item.product._id)" class="trash btn"><i class="fa-regular fa-trash-can"></i></button>
   </div>
@@ -33,15 +26,10 @@ export default {
     computed: {
         quantityXPrice() {
             return this.item.quantity * this.item.product.price
-        },
-        changeQuantity(value) {
-            value = this.item.quantity
-            console.log(value)
-            return value            
         }
     },
     methods: {
-        ...mapActions(['removeCartItem'])
+    ...mapActions(['removeCartItem', 'addQuantity', 'subQuantity'])
     }
 
 }
@@ -52,7 +40,7 @@ export default {
 .cart-card {
     box-shadow: 3px 3px 10px #cfcfcf;
     margin-bottom: 1rem;
-    padding-right: 2rem;
+    padding-right: 1.5rem;
     position: relative;
     border-left: 1px transparent solid;
 }
@@ -67,10 +55,19 @@ h4 {
     margin-bottom: .5rem;
 }
 
-select {
-    margin-right: 1rem;
-    height: 1.5rem;
-    width: 3rem;
+.btn-group {
+    width: 80px
+}
+
+.btn-q {
+    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    color: var(--secondary-color);
+    padding: .5rem;
+}
+
+.cart-right {
+    width: 150px;
 }
 
 .trash {
