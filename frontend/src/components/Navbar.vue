@@ -3,12 +3,12 @@
     <div class="navbar flex">
         <router-link to="/"><h1 class="logo">LOGO</h1></router-link>  
         <div class="flex links">
-            <router-link to="/login"><i class="fa-solid fa-user link"></i></router-link>
-            <router-link class="relative" to="/cart"><i class="fa-solid fa-cart-shopping link"></i><div v-if="cartCounter" class="counter flex">{{cartCounter}}</div></router-link>
+            <router-link v-if="!loggedIn" class="relative" to="/login"><i class="fa-solid fa-user link"></i></router-link>
+            <router-link v-else class="relative" to="/account"><i class="fa-solid fa-user link"></i></router-link>
+            <router-link class="relative" to="/cart"><i class="fa-solid fa-cart-shopping link"></i><div v-if="cartCounter" class="counter flex">{{ cartCounter }}</div></router-link>
         </div>
     </div>
-</nav>
- 
+</nav> 
 </template>
 
 <script>
@@ -16,7 +16,7 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'NavbarComponent',
     computed: {
-        ...mapGetters(['cartCounter'])
+        ...mapGetters(['cartCounter', 'loggedIn'])
     }
 }
 </script>
@@ -79,7 +79,7 @@ export default {
 
      @media (max-width: 992px) {
         .links {
-        width: 20%;
+            width: 20%;
         }
 
   }

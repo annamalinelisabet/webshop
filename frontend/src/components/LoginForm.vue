@@ -1,21 +1,56 @@
 <template>
-    <form>
+    <form @submit.prevent="handleSubmit">
         <h1>LOGGA IN</h1>
         <div class="input-group">
             <label for="email">Email:</label>
-            <input class="input" type="email" placeholder="Ange din emailadress...">
+            <input class="input" type="email" v-model="email">
         </div>
         <div class="input-group">
             <label for="password">Lösenord:</label>
-            <input class="input" type="password" placeholder="Ange ditt lösenord....">
+            <input class="input" type="password" v-model="password">
         </div>
+        <small class="error">{{ errorText }}</small>
         <button class="btn btn-primary btn-w">LOGGA IN</button>
     </form>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+            errorText: ''
+        }
+    },
+    methods: {
+        ...mapActions(['login']),
+        handleSubmit() {
+            if(this.email.trim() === '' || this.password.trim() === '') {
+                this.errorText = 'Du behöver fylla i båda fälten...'
+                return
+            } 
 
+            let user = {
+                email: this.email,
+                password: this.password
+            }
+
+            this.login(user)
+                .then(() => {
+                    if(this.$route.query.redirect) {
+                        this.$router.push(this.$route.query.redirect)
+                    } else {
+                        this.$router.go(-1)
+                    }
+                })
+                .catch(() => {
+                    this.errorText = 'Du har angett fel email eller lösenord...'
+                })
+
+        }
+    }
 }
 </script>
 
@@ -39,5 +74,10 @@ export default {
 
     button {
         margin-top: .6rem;
+    }
+
+    .error {
+        color: red;
+        font-weight: bold;
     }
 </style>
