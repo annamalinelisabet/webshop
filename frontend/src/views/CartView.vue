@@ -41,7 +41,7 @@ export default {
     ...mapGetters(['cart', 'totalPrice', 'cartCounter', 'loggedIn'])
   },
   methods: {
-      ...mapActions(['newOrder']),
+      ...mapActions(['newOrder', 'removeAllCartItems']),
       back() {
         this.$router.go(-1)
       },
@@ -59,14 +59,14 @@ export default {
       
         let products = this.orderData
         let totalPrice = this.totalPrice
+
         this.newOrder({products, totalPrice})
           .then(() => {
-            // ! TÖM CART
+            this.removeAllCartItems()
             this.$router.push('/order')
           })
           .catch(() => {
-            // ! PROVA EFTER tre timmar och se om den säger ifrån när token har gått ut, isåfalll gör ett sånt felmeddelande!
-            console.log('det här gick inte så bra')
+            this.$router.push('/relogin')
           })
 
       }

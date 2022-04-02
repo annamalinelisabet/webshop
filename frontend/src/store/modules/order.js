@@ -8,10 +8,8 @@ export default {
         orders: state => state.orders,
     },
     mutations: {
-        SET_ORDER: (state, order) => {   
-            state.orders.push(order)   
-            
-            // ??? BEHÖVS DET GÖRAS NÅT HÄR???
+        SET_ORDERS: (state, orders) => {   
+            state.orders = orders                
         }
     },
     actions: {
@@ -26,9 +24,20 @@ export default {
                 }
             })
             if(res.status === 201) {
-                commit('SET_ORDER', products)
+                commit('SET_ORDERS')
             }
             
+        },
+        getUserOrders: async ({commit}, userId) => {
+            const token = localStorage.getItem('token')
+            const res = await axios.get('orders/' + userId, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            if(res.status === 200) {
+                commit('SET_ORDERS', res.data)
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CartView from '../views/CartView.vue'
 import LoginView from '../views/LoginView.vue'
+import ReLoginView from '../views/ReLoginView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import AccountView from '../views/AccountView.vue'
 import DetailView from '../views/DetailView.vue'
@@ -37,15 +38,21 @@ const routes = [
     beforeEnter: requireNoAuth
   },
   {
+    path: '/relogin',
+    name: 'relogin',
+    component: ReLoginView
+  },
+  {
     path: '/register',
     name: 'register',
     component: RegistrationView,
     beforeEnter: requireNoAuth
   },
   {
-    path: '/account',
+    path: '/account/:userId',
     name: 'account',
     component: AccountView,
+    props: true,
     meta: { authorize: true }
   },
   {

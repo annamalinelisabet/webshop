@@ -4,7 +4,7 @@
         <router-link to="/"><h1 class="logo">LOGO</h1></router-link>  
         <div class="flex links">
             <router-link v-if="!loggedIn" class="relative" to="/login"><i class="fa-solid fa-user link"></i></router-link>
-            <router-link v-else class="relative" to="/account"><i class="fa-solid fa-user link"></i></router-link>
+            <router-link v-else class="relative" :to="{name: 'account', params: {userId: userId}}"><i class="fa-solid fa-user link"></i></router-link>
             <router-link class="relative" to="/cart"><i class="fa-solid fa-cart-shopping link"></i><div v-if="cartCounter" class="counter flex">{{ cartCounter }}</div></router-link>
         </div>
     </div>
@@ -16,7 +16,7 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'NavbarComponent',
     computed: {
-        ...mapGetters(['cartCounter', 'loggedIn'])
+        ...mapGetters(['cartCounter', 'loggedIn', 'userId'])
     }
 }
 </script>

@@ -9,7 +9,7 @@
     </div>
 
     <div class="card-wrapper" v-if="products">
-      <ProductCard v-for="product in products" :key="product.id" :product="product"/>
+      <ProductCard v-for="product in products" :key="product._id" :product="product"/>
     </div>
     <Footer />
 </template>

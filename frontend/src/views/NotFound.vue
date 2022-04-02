@@ -1,7 +1,7 @@
 <template>
   <div class="container down">
       <h3>Här fanns det tyvärr ingenting...</h3>
-      <router-link to="/"><h5>Tillbaka till startsidan</h5></router-link>
+      <router-link to="/"><h5>Till startsidan</h5></router-link>
   </div>
 </template>
 

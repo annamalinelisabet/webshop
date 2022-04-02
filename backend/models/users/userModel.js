@@ -49,7 +49,8 @@ exports.registerUser = (req, res) => {
                     statusCode: 201, 
                     status: true,
                     message: 'User was created successfully!',
-                    token: auth.generateToken(user)
+                    token: auth.generateToken(user),
+                    user
                 })
             })
             .catch(err => {
@@ -112,7 +113,8 @@ exports.loginUserWithEmailAndPassword = (req, res) => {
                 statusCode: 200, 
                 status: true,
                 message: 'Login was successful!',
-                token: auth.generateToken(user)
+                token: auth.generateToken(user),
+                user
             })
 
         })

@@ -42,7 +42,7 @@ exports.getAllOrdersFromUser = (req, res) => {
         })
     }
     
-    Order.find( {userId: req.params.userId}, (err, orders) => {
+    Order.find({ userId: req.params.userId }, (err, orders) => {
 
         if(err) {
             return res.status(400).json({
@@ -64,5 +64,7 @@ exports.getAllOrdersFromUser = (req, res) => {
 
     })
 }
+
+// 
 
 

@@ -44,6 +44,9 @@ export default {
       },
       REMOVE_CART_ITEM: (state, id) => {
          state.cart = state.cart.filter(item => item.product._id !== id)         
+      },
+      SET_EMPTY_CART: state => {
+          state.cart = []
       }
   },
   actions: {
@@ -58,6 +61,9 @@ export default {
       },
       removeCartItem: ({commit}, id) => {
           commit('REMOVE_CART_ITEM', id)
+      }, 
+      removeAllCartItems: ({commit}) => {
+          commit('SET_EMPTY_CART')
       }
   }
 }

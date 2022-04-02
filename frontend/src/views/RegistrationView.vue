@@ -54,12 +54,8 @@ export default {
             }
 
             this.registerNewUserAndLogin(user)
-                .then(() => {
-                    if(this.$route.query.redirect) {
-                        this.$router.push(this.$route.query.redirect)
-                    } else {
-                        this.$router.go(-1)
-                    }
+                .then(() => {              
+                    this.$router.push('/')                    
                 })
                 .catch(() => {
                     this.errorText = 'Din email finns redan registrerad...'

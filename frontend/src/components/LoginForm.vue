@@ -42,7 +42,7 @@ export default {
                     if(this.$route.query.redirect) {
                         this.$router.push(this.$route.query.redirect)
                     } else {
-                        this.$router.go(-1)
+                        this.$router.push('/')
                     }
                 })
                 .catch(() => {
